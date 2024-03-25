@@ -1,14 +1,9 @@
 import os
-
-current_directory = os.getcwd()
-os.chdir(current_directory)
-print("Ubicación actual:", current_directory)
-
-from cnn import CNN
+from src.cnn import CNN
 import torchvision
 from torchvision import transforms
-from cnn import load_data
-from cnn import load_model_weights
+from src.cnn import load_data
+from src.cnn import load_model_weights
 import torch
 import torch.nn as nn
 # import matplotlib.pyplot as plt
@@ -34,8 +29,8 @@ def get_label(imagen):
 
 
     # Load data and model 
-    train_dir = '../dataset/training'
-    valid_dir = '../dataset/validation'
+    train_dir = './dataset/training'
+    valid_dir = './dataset/validation'
     train_loader, valid_loader, num_classes = load_data(train_dir, 
                                                         valid_dir, 
                                                         batch_size=32, 
@@ -45,7 +40,7 @@ def get_label(imagen):
 
 
 
-    model_weights = torch.load('modelo.pth')
+    model_weights = torch.load('./src/modelo.pth')
     my_trained_model = CNN(torchvision.models.resnet50(weights='DEFAULT'), num_classes)
     my_trained_model.load_state_dict(model_weights)
 
