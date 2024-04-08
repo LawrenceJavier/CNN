@@ -41,11 +41,11 @@ def get_label(imagen):
 
     try:
         #Test GPU
-        model_weights = torch.load('./src/resnet50-final.pt')
+        model_weights = torch.load('./src/resnet50-20.pt')
     except:
         #En caso de que no haya GPU, se carga a la CPU
         print("Using CPU...")
-        model_weights = torch.load('./src/resnet50-final.pt', map_location=torch.device('cpu'))
+        model_weights = torch.load('./src/resnet50-20.pt', map_location=torch.device('cpu'))
 
     my_trained_model = CNN(torchvision.models.resnet50(weights='DEFAULT'), num_classes)
     my_trained_model.load_state_dict(model_weights)
